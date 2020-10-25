@@ -14,6 +14,8 @@ This is a simple implementation of linear regression model using the sckit learn
 
 **Output of the Script**
 ![Output of the Script](Output.png)
+
+
 **Credits to ourworldindata.org for the dataset that I used**
 Here is the link for their website and the download link for the dataset that I used: <https://ourworldindata.org/coronavirus/country/philippines?country=~PHL>
 
