@@ -1,5 +1,4 @@
 import math
-import itertools
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,6 +14,7 @@ def squarepred(constants, inputs):
         predicts.append(y)
     
     return predicts
+
 #load the data
 df = pd.read_csv('covid_trainingdata.csv')
 
