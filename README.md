@@ -13,6 +13,7 @@ This is a simple implementation of linear regression model using the sckit learn
     - Sckitlearn
 
 **Output of the Script**
+
 ![Output of the Script](Output.PNG)
 
 
