@@ -6,15 +6,14 @@ from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
-
-def exponentialpred(constant,xinputs):
+def squarepred(constants, inputs):
     predicts = []
-    for i in xinputs:
-        predicts.append( xinputs[0]*math.log10(i) + xinputs[1])
+
+    for i in inputs:
+        y = constants[0]*math.pow(i,2) + constants[1]*math.pow(i,1) +constants[2]
+        predicts.append(y)
     
     return predicts
-
-
 #load the data
 df = pd.read_csv('covid_trainingdata.csv')
 
@@ -46,13 +45,18 @@ linearmodel.fit(x_train,y_train)
 #making predictions based on the testing data
 linearpredictions = linearmodel.predict(x_test)
 
-#this will make a exponential model of the covid cases
-exponentialmodel = np.polyfit(np.log(x_train.flatten()), y_train.flatten(),1)
 
-print(exponentialmodel)
+#this will make a exponential model of the covid cases
+squaremodel = np.polyfit(x_train.flatten(), y_train.flatten(),2)
+squarepredictions = np.array(squarepred(squaremodel,x_test))
+
+print(x_test)
+
 #ploting the important stuff
 plt.plot(df['nthdayinfection'],df['total_cases'],color='red')
 plt.plot(x_test,linearpredictions)
+plt.scatter(x_test, squarepredictions, color="green",linestyle = "-")
+
 plt.show()
 
 
