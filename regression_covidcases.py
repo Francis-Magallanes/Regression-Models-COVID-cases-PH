@@ -1,4 +1,5 @@
 import math
+import itertools
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -50,14 +51,26 @@ linearpredictions = linearmodel.predict(x_test)
 squaremodel = np.polyfit(x_train.flatten(), y_train.flatten(),2)
 squarepredictions = np.array(squarepred(squaremodel,x_test))
 
-print(x_test)
+#this will sort the values for plotting
+lists = sorted(zip(*[x_test, squarepredictions]))
+
+#this will store the sorted values
+new_x_test, squarepredictions = list(zip(*lists))
 
 #ploting the important stuff
-plt.plot(df['nthdayinfection'],df['total_cases'],color='red')
-plt.plot(x_test,linearpredictions)
-plt.scatter(x_test, squarepredictions, color="green",linestyle = "-")
+#plot for the total covid cases
+plt.plot(df['nthdayinfection'],df['total_cases'],color='red',label="Actual Total Covid Cases") 
+
+#plot for the linear regression
+plt.plot(x_test,linearpredictions,label="Linear Regression Model")
+
+#this will plot for the quadratic regression
+plt.plot(new_x_test, squarepredictions, color="green",label="Quadratic Regression Model")
+
+#showing the labels for axis and legends
+plt.xlabel("N days since 31/12/2019")
+plt.ylabel("Total Number of Covid Cases")
+plt.legend(loc="lower right")
 
 plt.show()
-
-
 
