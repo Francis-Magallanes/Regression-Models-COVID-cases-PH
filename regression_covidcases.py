@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -25,8 +26,12 @@ x_train,x_test, y_train, y_test = train_test_split(x,y,test_size=0.1)
 
 linearmodel = LinearRegression()
 linearmodel.fit(x_train,y_train)
-accuracy = linearmodel.score(x_test,y_test)
+
+predictions = linearmodel.predict(x_test)
+
+plt.plot(df['nthdayinfection'],df['total_cases'],color='red')
+plt.plot(x_test,predictions)
+plt.show()
 
 
-print(linearmodel.predict(np.array(780).reshape(-1,1) ))
 
